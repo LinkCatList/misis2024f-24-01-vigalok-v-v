@@ -1,10 +1,10 @@
 #include "complex.h"
 
-double Complex::GetReal() {
+double Complex::GetReal() const {
     return Real;
 }
 
-double Complex::GetImaginary() {
+double Complex::GetImaginary() const {
     return Imaginary;
 }
 

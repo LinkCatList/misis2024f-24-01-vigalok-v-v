@@ -19,8 +19,8 @@ public:
     {}
 
 public:
-    double GetReal();
-    double GetImaginary();
+    double GetReal() const;
+    double GetImaginary() const;
 
     void SetReal(const double OtherReal);
     void SetImaginary(const double OtherImaginary);
@@ -30,7 +30,7 @@ public:
         return Real == otherComplex.Real && Imaginary == otherComplex.Imaginary;
     }
 
-    bool operator !=(const Complex& otherComplex) {
+    bool operator !=(const Complex& otherComplex) const {
         return *this != otherComplex;
     }
 
