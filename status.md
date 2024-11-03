@@ -1,7 +1,6 @@
-STAMP: 20241030-080615
+STAMP: 20241103-092821
 ERROR: file codeforces.id is absent
 ERROR: file CMakeLists.txt is absent
-ERROR: file codeforces.id is absent
 ERROR: file prj.codeforces/CMakeLists.txt is absent
 ERROR: file prj.lab/CMakeLists.txt is absent
 ERROR: file prj.lab/complex/CMakeLists.txt is absent
