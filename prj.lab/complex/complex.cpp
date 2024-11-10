@@ -1,4 +1,5 @@
 #include "complex.hpp"
+#include <exception>
 
 double Complex::GetReal() const {
     return Real;
@@ -45,6 +46,21 @@ Complex& Complex::operator *=(const Complex& otherComplex) {
 
 Complex& Complex::operator *=(const double otherReal) {
    return *this *= Complex(otherReal);
+}
+
+Complex& Complex::operator /=(const double otherReal) {
+    if (otherReal == 0) {
+        throw std::exception();
+    }
+    Real /= otherReal;
+    Imaginary /= otherReal;
+    return *this;
+}
+
+Complex operator /(const Complex& complex, const double otherReal) {
+    Complex division = complex;
+    division /= otherReal;
+    return division;
 }
 
 Complex operator +(const Complex& lhs, const Complex& rhs) {

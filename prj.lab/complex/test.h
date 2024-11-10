@@ -1,4 +1,5 @@
 #include <cassert>
+#include <exception>
 #include <sstream> 
 #include <string>
 
@@ -30,4 +31,15 @@ inline void RunTest () {
     complex += Complex(1, -2);
     assert(complex == Complex(441, 2278));
     std::cerr << "+= operator with complex number : OK" << std::endl;
+
+    complex /= 1;
+    assert(complex == Complex(441, 2278));
+    std::cerr << "/= operator with real number : OK" << std::endl;
+
+    try {
+        complex /= 0;
+    }
+    catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }

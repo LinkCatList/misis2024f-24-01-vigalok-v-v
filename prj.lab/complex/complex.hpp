@@ -41,11 +41,12 @@ public:
     Complex& operator -=(const double otherReal);
     Complex& operator *=(const Complex& otherComplex);
     Complex& operator *=(const double otherReal);
+    Complex& operator /=(const double otherReal);
 
     friend Complex operator +(const Complex& lhs, const Complex& rhs);
     friend Complex operator -(const Complex& lhs, const Complex& rhs);
     friend Complex operator *(const Complex& lhs, const Complex& rhs);
-    friend Complex operator /(const Complex& lhs, const Complex& rhs);
+    friend Complex operator /(const Complex& complex, const double otherReal);
 
 public:
     std::ostream& WriteTo(std::ostream& ostrm) const;
