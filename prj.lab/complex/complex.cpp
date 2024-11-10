@@ -1,4 +1,4 @@
-#include "complex.h"
+#include "complex.hpp"
 
 double Complex::GetReal() const {
     return Real;
@@ -65,9 +65,9 @@ std::ostream& Complex::WriteTo(std::ostream& ostrm) const {
 }
 
 std::istream& Complex::ReadFrom(std::istream& istrm) {
-    char leftBrace = ' ';
-    char separator = ' ';
-    char rightBrace = ' ';
+    char leftBrace = '{';
+    char separator = ',';
+    char rightBrace = '}';
     Complex otherComplex;
 
     istrm >> leftBrace >> otherComplex.Real >> separator >> otherComplex.Imaginary >> rightBrace;

@@ -1,16 +1,10 @@
-cmake_minimum_required(VERSION 3.6)
-project(complex LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.10)
+project(MyProject)         
 
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 23)            
+set(CMAKE_CXX_STANDARD_REQUIRED True)  
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_executable(complex complex.cpp complex.hpp main.cpp test.h)
 
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
-add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
-target_include_directories(${PROJECT_NAME} PRIVATE src)
-
-target_compile_options(${PROJECT_NAME} PRIVATE -O0 -g)
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic-errors)
+include_directories(${PROJECT_SOURCE_DIR})
