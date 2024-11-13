@@ -14,7 +14,7 @@ public:
     : Numerator(numerator)
     , Denumerator(denumerator)
     {
-        this->Normalize();
+        Normalize();
     }
 
     Rational(const Rational& otherRational) {
