@@ -5,7 +5,7 @@ template<typename T>
 class Array {
 public:
     Array(std::ptrdiff_t size = 0)
-    : Data_(new T[size])
+    : Data_(new T[2 * size])
     , Size_(size)
     , Capacity_(2 * size)
     {
@@ -15,7 +15,7 @@ public:
     }
 
     Array(const Array& otherArray) {
-        Data_ = std::shared_ptr<T[]>(new T[otherArray.Size()]);
+        Data_ = std::shared_ptr<T[]>(new T[otherArray.Capacity_()]);
         Size_ = otherArray.Size();
         Capacity_ = otherArray.Capacity_;
         for (size_t i = 0; i < otherArray.Size(); ++i) {
@@ -36,23 +36,36 @@ public:
     void Resize(const std::ptrdiff_t size) {
         std::shared_ptr<T[]> currentData = Data_;
         Data_.reset();
-        Data_ = std::shared_ptr<T[]>(new T[size]);
-        for (size_t i = 0; i < size; ++i) {
+        Data_ = std::shared_ptr<T[]>(new T[2 * size]);
+        for (size_t i = 0; i < 2 * size; ++i) {
             Data_[i] = T();
         }
         for (size_t i = 0; i < std::min(Size_, size); ++i) {
             Data_[i] = currentData[i];
         }
         Size_ = size;
-        Capacity_ = size * 2;
+        Capacity_ = 2 * size;
     }
 
-    void Insert(const std::ptrdiff_t index) {
+    void Insert(const std::ptrdiff_t index, const T& value) {
+        CheckIndex(index);
+        if (Size_ == Capacity_) {
+            Resize(2 * Size_);
+        }
         
+        for (size_t i = Size_; i > index; --i) {
+            Data_[i] = Data_[i - 1];
+        }
+        Data_[index] = value;
+        ++Size_;
     }
 
     void Remove(const std::ptrdiff_t index) {
-
+        CheckIndex(index);
+        for (size_t i = index; i < Size_ - 1; ++i) {
+            Data_[i] = Data_[i + 1];
+        }
+        --Size_;
     }
 
     ~Array() {
@@ -74,6 +87,12 @@ public:
     }
 
 private:
+    void CheckIndex(const std::ptrdiff_t index) {
+        if (index < 0|| index >= Size_) {
+            throw std::runtime_error("invalid index");
+        }
+    }
+
     std::shared_ptr<T[]> Data_ = nullptr;
     std::ptrdiff_t Size_ = 0;
     std::ptrdiff_t Capacity_ = 0;
