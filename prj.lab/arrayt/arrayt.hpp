@@ -51,6 +51,7 @@ public:
         CheckIndex(index);
         if (Size_ == Capacity_) {
             Resize(2 * Size_);
+            Size_ /= 2;
         }
         
         for (size_t i = Size_; i > index; --i) {
