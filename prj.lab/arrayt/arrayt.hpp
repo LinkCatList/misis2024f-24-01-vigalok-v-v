@@ -24,13 +24,16 @@ public:
     }
 
     Array& operator =(const Array& otherArray) {
-        Data_.reset();
-        Data_ = std::shared_ptr<T[]>(new T[otherArray.Size()]);
-        Size_ = otherArray.Size();
-        Capacity_ = otherArray.Capacity;
-        for (size_t i = 0; i < otherArray.Size(); ++i) {
-            Data_[i] = otherArray.Data_[i];
+        if (*this != otherArray) {
+            Data_.reset();
+            Data_ = std::shared_ptr<T[]>(new T[otherArray.Size()]);
+            Size_ = otherArray.Size();
+            Capacity_ = otherArray.Capacity;
+            for (size_t i = 0; i < otherArray.Size(); ++i) {
+                Data_[i] = otherArray.Data_[i];
+            }
         }
+        return *this;
     }
 
     void Resize(const std::ptrdiff_t size) {
