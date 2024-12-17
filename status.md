@@ -1,4 +1,4 @@
-STAMP: 20241216-223937
+STAMP: 20241217-073120
 OK: file codeforces.id is correct
 ERROR: file prj.test/CMakeLists.txt is absent
 ERROR: file prj.test/arrayd_doctest.cpp is absent
