@@ -71,6 +71,7 @@ private:
             for (ptrdiff_t i = Begin; i < End; ++i) {
                 oldData[i - Begin] = Data[i];
             }
+            delete[] Data;
             Data = new float[Capacity];
             for (ptrdiff_t i = Begin; i < End; ++i) {
                 Data[i] = oldData[i - Begin];
