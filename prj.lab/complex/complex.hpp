@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 
+#define EPS 1e-5
+
 struct Complex {
 public:
     Complex () {
@@ -27,7 +29,7 @@ public:
 
 public:
     bool operator ==(const Complex& otherComplex) const {
-        return Real == otherComplex.Real && Imaginary == otherComplex.Imaginary;
+        return abs(Real - otherComplex.Real) <= EPS && abs(Imaginary == otherComplex.Imaginary) <= EPS;
     }
 
     bool operator !=(const Complex& otherComplex) const {
@@ -35,6 +37,8 @@ public:
     }
 
 public:
+    Complex& operator =(const Complex& otherComplex) = default;
+
     Complex& operator +=(const Complex& otherComplex);
     Complex& operator +=(const double otherReal);
     Complex& operator -=(const Complex& otherComplex);

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <memory>
 
@@ -92,7 +94,7 @@ public:
 
 private:
     void CheckIndex(const std::ptrdiff_t index) {
-        if (index < 0|| index >= Size_) {
+        if (index < 0 || index >= Size_) {
             throw std::runtime_error("invalid index");
         }
     }
